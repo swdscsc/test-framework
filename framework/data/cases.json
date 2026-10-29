@@ -1,0 +1,13 @@
+[
+  {"name": "login_alice_ok",      "type": "login",        "payload": {"username": "alice", "password": "secret123"}, "expect": 200},
+  {"name": "login_wrong_pwd",     "type": "login",        "payload": {"username": "alice", "password": "x"}, "expect": 401},
+  {"name": "login_missing_field", "type": "login",        "payload": {"username": "alice"}, "expect": 400},
+  {"name": "login_unknown_user",  "type": "login",        "payload": {"username": "ghost", "password": "x"}, "expect": 401},
+  {"name": "order_valid",         "type": "create_order", "payload": {"user_id": 1, "item": "USB", "qty": 3}, "expect": 201},
+  {"name": "order_qty_zero",      "type": "create_order", "payload": {"user_id": 1, "item": "USB", "qty": 0}, "expect": 400},
+  {"name": "order_negative_qty",  "type": "create_order", "payload": {"user_id": 1, "item": "USB", "qty": -2}, "expect": 400},
+  {"name": "order_unknown_user",  "type": "create_order", "payload": {"user_id": 9999, "item": "USB", "qty": 1}, "expect": 404},
+  {"name": "order_empty_item",    "type": "create_order", "payload": {"user_id": 1, "item": "", "qty": 1}, "expect": 400},
+  {"name": "get_user_1",          "type": "get_user",     "payload": {"id": 1}, "expect": 200},
+  {"name": "get_user_missing",    "type": "get_user",     "payload": {"id": 9999}, "expect": 404}
+]
